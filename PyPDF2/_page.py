@@ -1347,12 +1347,10 @@ class PageObject(DictionaryObject):
                 # based
                 # if output != "" and output[-1]!="\n":
                 #    output += "\n"
-                # print(f"operator==b'BT': {text}")
                 text = ""
                 return None
             elif operator == b"ET":
                 output += text
-                # print(f"operator==b'ET': {text}")
                 text = ""
             # table 4.7, page 219
             # cm_matrix calculation is a reserved for the moment
@@ -1384,7 +1382,6 @@ class PageObject(DictionaryObject):
                 # rtl_dir = False
             elif operator == b"cm":
                 output += text
-                # print(f"operator==b'cm': {text}")
                 text = ""
                 cm_matrix = mult(
                     [
@@ -1408,7 +1405,6 @@ class PageObject(DictionaryObject):
             elif operator == b"Tf":
                 if text != "":
                     output += text + ";"  # .translate(cmap)
-                    # print(f"operator==b'Tf': {text}")
                 text = ""
                 # rtl_dir = False
                 try:
@@ -1504,7 +1500,6 @@ class PageObject(DictionaryObject):
                                     rtl_dir = True
                                     # print("RTL",text,"*")
                                     output += text
-                                    # print(f"rtl_dir=True: {text}")
                                     text = ""
                                 text = x + text
                             else:  # left-to-right
@@ -1513,7 +1508,6 @@ class PageObject(DictionaryObject):
                                     rtl_dir = False
                                     # print("LTR",text,"*")
                                     output += text
-                                    # print(f"rtl_dir=False: {text}")
                                     text = ""
                                 text = text + x
                             # fmt: on
@@ -1534,7 +1528,6 @@ class PageObject(DictionaryObject):
                         if deltaY < -0.8 * f:
                             if (output + text)[-1] != "\n":
                                 output += text + "\n"
-                                # print(f"deltaY < -0.8: {text}")
                                 text = ""
                         elif (
                             abs(deltaY) < f * 0.3
@@ -1546,7 +1539,6 @@ class PageObject(DictionaryObject):
                         if deltaY > 0.8 * f:
                             if (output + text)[-1] != "\n":
                                 output += text + "\n"
-                                # print(f"deltaY > 0.8: {text}")
                                 text = ""
                         elif (
                             abs(deltaY) < f * 0.3
@@ -1558,7 +1550,6 @@ class PageObject(DictionaryObject):
                         if deltaX > 0.8 * f:
                             if (output + text)[-1] != "\n":
                                 output += text + "\n"
-                                # print(f"deltaX > 0.8: {text}")
                                 text = ""
                         elif (
                             abs(deltaX) < f * 0.3
@@ -1570,7 +1561,6 @@ class PageObject(DictionaryObject):
                         if deltaX < -0.8 * f:
                             if (output + text)[-1] != "\n":
                                 output += text + "\n"
-                                # print(f"deltaX < -0.8: {text}")
                                 text = ""
                         elif (
                             abs(deltaX) < f * 0.3
